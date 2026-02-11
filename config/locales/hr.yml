@@ -1,0 +1,13 @@
+hr:
+  permission_manage_wiki_acl: "Upravljanje pristupom wiki stranicama"
+
+  wiki_acl_access_control: "Kontrola pristupa"
+  wiki_acl_restrict_access: "Ograniči pristup na određene korisnike"
+  wiki_acl_access_level: "Razina pristupa"
+  wiki_acl_view: "Pregled"
+  wiki_acl_edit: "Uređivanje"
+  wiki_acl_save: "Spremi postavke pristupa"
+  wiki_acl_admin_note: "Administratori uvijek imaju pristup svim stranicama."
+  wiki_acl_unrestrict_note: "Isključivanje ograničenja pristupa uklanja sva ograničenja i čini stranicu dostupnom svim korisnicima wikija."
+  wiki_acl_restricted: "Ograničeno"
+  wiki_acl_no_access: "Nemate pristup ovoj stranici."

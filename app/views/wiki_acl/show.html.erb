@@ -1,0 +1,73 @@
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag 'wiki_acl', plugin: 'redmine_wiki_acl' %>
+<% end %>
+
+<h2><%= @page.title %> &mdash; <%= l(:wiki_acl_access_control) %></h2>
+
+<div class="wiki-acl-tabs">
+  <%= link_to l(:label_wiki), project_wiki_page_path(@project, @page.title) %>
+  <% if User.current.allowed_to?(:edit_wiki_pages, @project) %>
+    | <%= link_to l(:button_edit), edit_project_wiki_page_path(@project, @page.title) %>
+  <% end %>
+  | <%= link_to l(:label_history), history_project_wiki_page_path(@project, @page.title) %>
+  | <strong><%= "🔒 #{l(:wiki_acl_access_control)}" %></strong>
+</div>
+
+<%= form_tag(wiki_page_access_path(@project, @page.title), method: :patch) do %>
+  <div class="box">
+    <p>
+      <label>
+        <%= check_box_tag 'restricted', '1', @restricted, id: 'wiki_acl_restricted' %>
+        <strong><%= l(:wiki_acl_restrict_access) %></strong>
+      </label>
+    </p>
+
+    <div id="wiki_acl_user_list" style="<%= 'display:none;' unless @restricted %>">
+      <table class="list wiki-acl-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th><%= l(:label_user) %></th>
+            <th><%= l(:wiki_acl_access_level) %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @members.each do |user| %>
+            <% acl = @acls[user.id] %>
+            <tr class="<%= cycle('odd', 'even') %>">
+              <td class="checkbox">
+                <%= check_box_tag "users[#{user.id}][enabled]", '1', acl.present?,
+                    id: "user_#{user.id}" %>
+              </td>
+              <td>
+                <label for="user_<%= user.id %>"><%= user.name %></label>
+              </td>
+              <td>
+                <%= select_tag "users[#{user.id}][access_level]",
+                    options_for_select(
+                      [[l(:wiki_acl_view), 'view'], [l(:wiki_acl_edit), 'edit']],
+                      acl&.access_level || 'view'
+                    ),
+                    class: 'wiki-acl-level-select' %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="wiki-acl-notes">
+      <em class="info"><%= l(:wiki_acl_admin_note) %></em><br/>
+      <em class="info"><%= l(:wiki_acl_unrestrict_note) %></em>
+    </p>
+
+    <p><%= submit_tag l(:wiki_acl_save), class: 'btn btn-primary' %></p>
+  </div>
+<% end %>
+
+<%= javascript_tag do %>
+  document.getElementById('wiki_acl_restricted').addEventListener('change', function() {
+    var list = document.getElementById('wiki_acl_user_list');
+    list.style.display = this.checked ? '' : 'none';
+  });
+<% end %>

@@ -1,0 +1,166 @@
+/* WS Redmine Wiki ACL Styles */
+
+.wiki-acl-tabs {
+  margin-bottom: 1.2em;
+  padding-bottom: 0.5em;
+  border-bottom: 1px solid #ddd;
+  font-size: 0.95em;
+}
+
+.wiki-acl-tabs a {
+  text-decoration: none;
+  color: #169;
+  padding: 0 0.3em;
+}
+
+.wiki-acl-tabs a:hover {
+  text-decoration: underline;
+}
+
+.wiki-acl-tabs strong {
+  color: #333;
+}
+
+.wiki-acl-table {
+  width: 100%;
+  margin: 1em 0;
+}
+
+.wiki-acl-table th {
+  text-align: left;
+  padding: 6px 8px;
+  background: #eee;
+  border-bottom: 1px solid #ddd;
+}
+
+.wiki-acl-table td {
+  padding: 5px 8px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.wiki-acl-table td.checkbox {
+  width: 30px;
+  text-align: center;
+}
+
+.wiki-acl-level-select {
+  padding: 2px 6px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+.wiki-acl-notes {
+  margin-top: 1em;
+  color: #888;
+  font-size: 0.9em;
+}
+
+.wiki-acl-notes .info {
+  display: block;
+  margin: 0.2em 0;
+}
+
+.wiki-acl-restricted {
+  font-weight: bold;
+}
+
+.wiki-acl-badge {
+  display: inline-block;
+  background: #e74c3c;
+  color: #fff;
+  font-size: 0.7em;
+  padding: 1px 6px;
+  border-radius: 3px;
+  margin-left: 0.5em;
+  vertical-align: middle;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* Dark mode support - prefers-color-scheme */
+@media (prefers-color-scheme: dark) {
+  .wiki-acl-tabs {
+    border-bottom-color: #444;
+  }
+
+  .wiki-acl-tabs a {
+    color: #6cb4ee;
+  }
+
+  .wiki-acl-tabs strong {
+    color: #ddd;
+  }
+
+  .wiki-acl-table th {
+    background: #333;
+    border-bottom-color: #555;
+    color: #ddd;
+  }
+
+  .wiki-acl-table td {
+    border-bottom-color: #444;
+  }
+
+  .wiki-acl-table tr.odd {
+    background: #2a2a2a;
+  }
+
+  .wiki-acl-table tr.even {
+    background: #252525;
+  }
+
+  .wiki-acl-level-select {
+    background: #333;
+    color: #ddd;
+    border-color: #555;
+  }
+
+  .wiki-acl-notes {
+    color: #999;
+  }
+
+  .wiki-acl-badge {
+    background: #c0392b;
+  }
+}
+
+/* Redmine dark theme support (class-based) */
+body.theme-dark .wiki-acl-tabs,
+html[data-theme="dark"] .wiki-acl-tabs {
+  border-bottom-color: #444;
+}
+
+body.theme-dark .wiki-acl-tabs a,
+html[data-theme="dark"] .wiki-acl-tabs a {
+  color: #6cb4ee;
+}
+
+body.theme-dark .wiki-acl-tabs strong,
+html[data-theme="dark"] .wiki-acl-tabs strong {
+  color: #ddd;
+}
+
+body.theme-dark .wiki-acl-table th,
+html[data-theme="dark"] .wiki-acl-table th {
+  background: #333;
+  border-bottom-color: #555;
+  color: #ddd;
+}
+
+body.theme-dark .wiki-acl-table td,
+html[data-theme="dark"] .wiki-acl-table td {
+  border-bottom-color: #444;
+}
+
+body.theme-dark .wiki-acl-level-select,
+html[data-theme="dark"] .wiki-acl-level-select {
+  background: #333;
+  color: #ddd;
+  border-color: #555;
+}
+
+body.theme-dark .wiki-acl-notes,
+html[data-theme="dark"] .wiki-acl-notes {
+  color: #999;
+}

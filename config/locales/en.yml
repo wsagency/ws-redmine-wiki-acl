@@ -1,0 +1,13 @@
+en:
+  permission_manage_wiki_acl: "Manage wiki page access control"
+
+  wiki_acl_access_control: "Access Control"
+  wiki_acl_restrict_access: "Restrict access to specific users"
+  wiki_acl_access_level: "Access Level"
+  wiki_acl_view: "View"
+  wiki_acl_edit: "Edit"
+  wiki_acl_save: "Save Access Settings"
+  wiki_acl_admin_note: "Administrators always have access to all pages."
+  wiki_acl_unrestrict_note: "Unchecking 'Restrict access' removes all restrictions and makes the page accessible to all wiki users."
+  wiki_acl_restricted: "Restricted"
+  wiki_acl_no_access: "You don't have access to this page."
