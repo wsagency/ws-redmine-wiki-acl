@@ -16,24 +16,14 @@ module RedmineWikiAcl
 
       javascript_tag(%(
         (function() {
-          var tabs = document.querySelector('.tabs, .wiki-page-header ul, div.tabs ul');
-          if (!tabs) {
-            tabs = document.querySelector('.contextual') ||
-                   document.querySelector('.wiki-page .action-links');
-          }
-          if (tabs) {
+          var ctx = document.querySelector('.contextual');
+          if (ctx) {
             var a = document.createElement('a');
             a.href = '#{j url}';
-            a.textContent = '\\uD83D\\uDD12 #{j label}';
-            if (tabs.tagName === 'UL') {
-              var li = document.createElement('li');
-              li.appendChild(a);
-              tabs.appendChild(li);
-            } else {
-              var sep = document.createTextNode(' | ');
-              tabs.appendChild(sep);
-              tabs.appendChild(a);
-            }
+            a.className = 'icon icon-lock';
+            a.textContent = '#{j label}';
+            a.style.marginLeft = '4px';
+            ctx.appendChild(a);
           }
         })();
       ))
