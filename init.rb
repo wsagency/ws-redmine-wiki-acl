@@ -4,11 +4,14 @@ Redmine::Plugin.register :redmine_wiki_acl do
   name 'WS Redmine Wiki ACL'
   author 'Kristijan Lukačin / Web Solutions Ltd (ws.agency)'
   description 'Per-page, per-user wiki access control for Redmine'
-  version '1.0.0'
+  version '1.2.0'
   url 'https://github.com/wsagency/ws-redmine-wiki-acl'
   author_url 'https://ws.agency'
 
   requires_redmine version_or_higher: '5.0'
+
+  settings default: { 'enabled' => '1' },
+           partial: 'settings/wiki_acl_settings'
 
   project_module :wiki_acl do
     permission :manage_wiki_acl, { wiki_acl: [:show, :update] }, require: :member

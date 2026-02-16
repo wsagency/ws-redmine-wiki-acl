@@ -1,4 +1,5 @@
 en:
+  wiki_acl_plugin_enabled: "Enable wiki page access control"
   permission_manage_wiki_acl: "Manage wiki page access control"
 
   wiki_acl_access_control: "Access Control"

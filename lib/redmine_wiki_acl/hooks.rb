@@ -2,6 +2,8 @@ module RedmineWikiAcl
   class Hooks < Redmine::Hook::ViewListener
     # Add "Access Control" link to wiki page actions dropdown (··· menu)
     def view_layouts_base_body_bottom(context = {})
+      return '' unless plugin_enabled?
+
       controller = context[:controller]
       return '' unless controller.is_a?(WikiController)
       return '' unless controller.action_name.in?(%w[show edit history diff annotate])
@@ -50,6 +52,7 @@ module RedmineWikiAcl
 
     # Add stylesheet to wiki pages
     def view_layouts_base_html_head(context = {})
+      return '' unless plugin_enabled?
       controller = context[:controller]
       return '' unless controller.is_a?(WikiController) || controller.is_a?(WikiAclController)
 
@@ -58,6 +61,7 @@ module RedmineWikiAcl
 
     # Add lock icon indicator in wiki index
     def view_wiki_index_bottom(context = {})
+      return '' unless plugin_enabled?
       project = context[:project]
       return '' unless project
 
@@ -91,6 +95,13 @@ module RedmineWikiAcl
           });
         })();
       ))
+    end
+
+    private
+
+    def plugin_enabled?
+      settings = Setting.plugin_redmine_wiki_acl rescue {}
+      settings['enabled'] != '0'
     end
   end
 end
