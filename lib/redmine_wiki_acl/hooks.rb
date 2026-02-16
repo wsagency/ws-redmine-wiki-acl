@@ -12,7 +12,7 @@ module RedmineWikiAcl
       return '' unless User.current.allowed_to?(:manage_wiki_acl, project)
 
       label = I18n.t(:wiki_acl_access_control)
-      url = Rails.application.routes.url_helpers.wiki_page_access_path(project, page.title)
+      url = Rails.application.routes.url_helpers.wiki_acl_page_path(project, page.title)
 
       javascript_tag(%(
         (function() {

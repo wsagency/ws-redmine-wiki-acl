@@ -25,7 +25,7 @@ class WikiAclController < ApplicationController
     end
 
     flash[:notice] = l(:notice_successful_update)
-    redirect_to wiki_page_access_path(@project, @page.title)
+    redirect_to wiki_acl_page_path(@project, @page.title)
   end
 
   private
