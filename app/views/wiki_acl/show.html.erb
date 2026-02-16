@@ -13,7 +13,7 @@
   | <strong><%= "🔒 #{l(:wiki_acl_access_control)}" %></strong>
 </div>
 
-<%= form_tag(wiki_page_access_path(@project, @page.title), method: :patch) do %>
+<%= form_tag(wiki_acl_page_update_path(@project, @page.title), method: :patch) do %>
   <div class="box">
     <p>
       <label>
