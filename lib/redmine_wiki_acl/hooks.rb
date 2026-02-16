@@ -1,6 +1,6 @@
 module RedmineWikiAcl
   class Hooks < Redmine::Hook::ViewListener
-    # Add "Access" tab to wiki page
+    # Add "Access Control" link to wiki page actions dropdown (··· menu)
     def view_layouts_base_body_bottom(context = {})
       controller = context[:controller]
       return '' unless controller.is_a?(WikiController)
@@ -16,14 +16,33 @@ module RedmineWikiAcl
 
       javascript_tag(%(
         (function() {
-          var ctx = document.querySelector('.contextual');
-          if (ctx) {
+          // Redmine actions dropdown structure:
+          // .contextual > span.drdn > div.drdn-content > div.drdn-items > [links]
+          var dropdownItems = document.querySelector('.contextual .drdn .drdn-content .drdn-items');
+
+          if (dropdownItems) {
+            // Add Access Control link inside the ··· dropdown menu
             var a = document.createElement('a');
             a.href = '#{j url}';
             a.className = 'icon icon-lock';
             a.textContent = '#{j label}';
-            a.style.marginLeft = '4px';
-            ctx.appendChild(a);
+            dropdownItems.appendChild(a);
+          } else {
+            // Fallback: add as button next to Edit/Watch (before the dropdown trigger)
+            var ctx = document.querySelector('.contextual');
+            if (ctx) {
+              var drdn = ctx.querySelector('.drdn');
+              var a = document.createElement('a');
+              a.href = '#{j url}';
+              a.className = 'icon icon-lock';
+              a.textContent = '#{j label}';
+              a.style.marginRight = '4px';
+              if (drdn) {
+                ctx.insertBefore(a, drdn);
+              } else {
+                ctx.appendChild(a);
+              }
+            }
           }
         })();
       ))
